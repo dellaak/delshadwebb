@@ -1,0 +1,8 @@
+.navbar-nav {
+  text-align: left;
+}
+
+.container-fluid {
+  padding: 0 !important;
+  margin: 0 !important;
+}
