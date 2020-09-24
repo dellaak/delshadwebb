@@ -24,6 +24,7 @@ import envelope from '../images/envelope.svg';
 import user from '../images/user.svg';
 import github from '../images/github.svg';
 import linkedin from '../images/linkedin.svg';
+import smslogo from '../images/logo-sms.png';
 
 function ContactMe(props) {
   const [name, setName] = useState('');
@@ -133,23 +134,16 @@ function ContactMe(props) {
                     </StyledEmailDiv>)} */}
         <StyledInfoDiv>
           <StyledInfoText>Tack för besöket!</StyledInfoText>
+          <StyledInfoText>Följ mig på sociala medier!</StyledInfoText>
           <StyledInfoText>
-            <StyledInfoIcon src={github} alt="github-icon" />{' '}
-            <StyledaTag href="https://github.com/dellaak">Github</StyledaTag>
+            <a
+              href="https://sharemysocials.com/delshad"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img src={smslogo} alt="smslogo" />
+            </a>
           </StyledInfoText>
-          <StyledInfoText>
-            <StyledInfoIcon src={linkedin} alt="linkedin-icon" />{' '}
-            <StyledaTag href="https://www.linkedin.com/in/delshad-kogi/">
-              LinkedIn
-            </StyledaTag>
-          </StyledInfoText>
-          <StyledInfoText>
-            <StyledInfoIcon src={envelope} alt="envelope-icon" />{' '}
-            <StyledaTag href="mailto:delshad.kogi@gmail.com" target="_top">
-              delshad.kogi@gmail.com
-            </StyledaTag>
-          </StyledInfoText>
-          <StyledInfoText>Hör gärna av er!</StyledInfoText>
         </StyledInfoDiv>
       </StyledWrapDiv>
     </StyledDiv>

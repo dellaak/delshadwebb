@@ -81,6 +81,9 @@ export const StyledInfoText = styled.p`
   color: #fff;
   font-size: 22px;
   font-family: 'Josefin Sans', sans-serif;
+  img {
+    width: 100px;
+  }
 `;
 
 export const StyledInfoIcon = styled.img`
