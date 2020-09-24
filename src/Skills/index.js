@@ -48,7 +48,7 @@ function Skills() {
             </StyledBoxTitle>
             <StyledSkillText>
               React.js • HTML5 • Styled Components • CSS • SCSS • jQuery •
-              Bootstrap{' '}
+              Bootstrap • Material UI • Redux • Angular 2-7 • Typescript{' '}
             </StyledSkillText>
           </StyledFrontEndDiv>
           <StyledBackEndDiv>
@@ -58,7 +58,8 @@ function Skills() {
               <StyledIcon src={dbimg} alt="dbimg" />
             </StyledBoxTitle>
             <StyledSkillText>
-              Node.js • MongoDB • Express • Moongose • Postgresql{' '}
+              Node.js • MongoDB • Express • Moongose • Postgresql •
+              Microservices • Integrationer av api • AWS{' '}
             </StyledSkillText>
           </StyledBackEndDiv>
         </StyledSkillsDiv>

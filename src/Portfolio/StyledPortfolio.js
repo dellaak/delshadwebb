@@ -13,6 +13,14 @@ export const StyledWrapDiv = styled.div`
   text-align: center;
 `;
 
+export const StyledWrapProjects = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex: 1;
+  width: 100%;
+  flex-wrap: wrap;
+`;
+
 export const StyledTitleDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -33,12 +41,13 @@ export const StyledButton = styled(Button)`
 
 export const StyledImgDiv = styled.div`
   display: flex;
-  align-self: center;
+  justify-content: space-around;
   padding: 20px;
   border: 1px solid lightgray;
   border-radius: 9px;
   flex-direction: column;
   max-width: 350px;
+  height: 550px;
   -webkit-box-shadow: 4px -5px 19px -1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 4px -5px 19px -1px rgba(0, 0, 0, 0.5);
   box-shadow: 4px -5px 19px -1px rgba(0, 0, 0, 0.5);
@@ -57,7 +66,6 @@ export const StyledTitle = styled.h2`
 export const Styledimg = styled.img`
   max-width: 300px;
   width: 100%;
-  height: 300px;
 `;
 
 export const StyledImgText = styled.div`
