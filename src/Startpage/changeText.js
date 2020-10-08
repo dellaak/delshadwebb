@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import TextLoop from 'react-text-loop';
+import React from "react";
+import styled from "styled-components";
+import TextLoop from "react-text-loop";
 
 const StyledText = styled.div`
   display: flex;
@@ -45,15 +45,15 @@ const StyledTextLoop = styled(TextLoop)`
 const ChangeStartText = () => {
   return (
     <StyledWrap>
-      <StyledText>Letar du efter</StyledText>{' '}
+      <StyledText>Letar du efter</StyledText>{" "}
       <StyledTextLoop
         springConfig={{ stiffness: 280, damping: 8 }}
         interval={2000}
         children={[
-          'en webbutvecklare?',
-          ' en ny hemsida? ',
-          'digitala lösningar?',
-          'någon att fråga?',
+          "en webbutvecklare?",
+          " en ny hemsida? ",
+          "digitala lösningar?",
+          "någon att fråga?",
         ]}
       />
     </StyledWrap>

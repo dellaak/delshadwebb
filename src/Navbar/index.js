@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import {
   StyledNavbar,
   StyledNavBrand,
@@ -7,13 +7,13 @@ import {
   StyledNav,
   Stylednv,
   StyledCollapse,
-} from './StyledNavbar';
-import { goToAnchor } from 'react-scrollable-anchor';
-import './style.css';
+} from "./StyledNavbar";
+import { goToAnchor } from "react-scrollable-anchor";
+import "./style.css";
 
 const scrollTop = () => {
   window.scrollTo(0, 0);
-  window.history.pushState('', '', '/');
+  window.history.pushState("", "", "/");
 };
 
 function NavbarComp() {
@@ -30,7 +30,7 @@ function NavbarComp() {
     useEffect(() => {
       // Update the document title using the browser API
 
-      let el = document.getElementById('#' + myurl);
+      let el = document.getElementById("#" + myurl);
       if (el === null) {
         return;
       }
@@ -49,9 +49,9 @@ function NavbarComp() {
       }
     };
 
-    document.addEventListener('scroll', handleScroll);
+    document.addEventListener("scroll", handleScroll);
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      document.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -60,14 +60,14 @@ function NavbarComp() {
   return (
     <StyledNavbar colorprop={navBackground ? 1 : 0} light expand="md">
       <StyledNavBrand textcolorprop={navBackground ? 1 : 0} onClick={scrollTop}>
-        Delshad Kogi
+        #OpenForWork
       </StyledNavBrand>
       <Stylednv onClick={toggle} />
       <StyledCollapse isOpen={isOpen} navbar>
         <StyledNav className="ml-auto" navbar>
           <StyledNavItem>
             <StyledNavLink smooth to="/#aboutme" activeClassName="selected">
-              {' '}
+              {" "}
               Om mig
             </StyledNavLink>
           </StyledNavItem>

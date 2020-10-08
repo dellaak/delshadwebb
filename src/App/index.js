@@ -1,9 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import NavbarComp from '../Navbar/index';
-import Startpage from '../Startpage/startpage';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavbarComp from "../Navbar/index";
+import Startpage from "../Startpage/startpage";
+import "./style.scss";
 
-export default function() {
+export default function () {
   let w = window.innerWidth;
   let d = 2200;
 
