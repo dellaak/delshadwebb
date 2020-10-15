@@ -11,8 +11,12 @@ export const StyledWrapDiv = styled.div`
   }
 `;
 export const StyledForm = styled(Form)`
-  width: 70%;
+  width: 90%;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
 `;
 
 export const StyledDiv = styled.div`
@@ -134,7 +138,7 @@ export const StyledInputEmail = styled(Input)`
   border-bottom: solid #fff 2px;
   padding: 3px 10px;
   height: 50px;
-  width: 90%;
+  width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
   ::placeholder {
@@ -149,7 +153,7 @@ export const StyledMsgBox = styled(Input)`
   background: #eee;
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
+  width: 100%;
   height: 100px !important;
   resize: none;
   color: black;
