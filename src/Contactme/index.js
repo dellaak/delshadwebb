@@ -44,7 +44,7 @@ function ContactMe(props) {
     onSubmit: (values) => handleSubmit(values).then(() => setSend(true)),
   });
 
-  const handleSubmit = (val) => {
+  const handleSubmit = (values) => {
     const urlEncodedData = Object.entries(values)
       .map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
       .join("&");
