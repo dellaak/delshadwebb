@@ -31,7 +31,7 @@ function ContactMe(props) {
   const [nameVerify, setNameVerify] = useState(false);
   const [textVerify, setTextVerify] = useState(false);
   const [send, setSend] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const initialValues = {
     "form-name": "contactme",
     name: "",
@@ -41,10 +41,12 @@ function ContactMe(props) {
 
   const { values, setFieldValue, submitForm } = useFormik({
     initialValues,
-    onSubmit: (values) => handleSubmit(values).then(() => setSend(true)),
+    onSubmit: (values) =>
+      handleSubmit(values).then(() => setLoading(false), setSend(true)),
   });
 
   const handleSubmit = (values) => {
+    setLoading(true);
     const urlEncodedData = Object.entries(values)
       .map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
       .join("&");
@@ -107,8 +109,9 @@ function ContactMe(props) {
       <StyledTopTitle>
         <StyledH2>Sugen på en egen hemsida? Kontakta mig </StyledH2>
       </StyledTopTitle>
+
       <StyledWrapDiv>
-        {send ? (
+        {send && !loading ? (
           <StyledSentDiv>
             <StyledInfoText>Tack för ditt meddelande!</StyledInfoText>
             <StyledInfoText>Jag återkommer så fort jag kan.</StyledInfoText>
@@ -162,12 +165,21 @@ function ContactMe(props) {
               <StyledButton
                 onClick={submitForm}
                 disabled={
-                  emailVerify && nameVerify && textVerify === true
+                  emailVerify && nameVerify && textVerify && !loading === true
                     ? false
                     : true
                 }
               >
-                Skicka meddelande
+                {loading ? (
+                  <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                ) : (
+                  " Skicka meddelande"
+                )}
               </StyledButton>
             </StyledForm>
           </StyledEmailDiv>

@@ -27,8 +27,7 @@ function Skills() {
           <StyledImgHolder />
           <StyledInfoText>
             Hej! Mitt namn är Delshad Kogi och jag söker just nu ett nytt jobb
-            från och med 1 november, då mitt uppdrag hos nuvarande arbetsgivare
-            tar slut.
+            från och med 1 november.
           </StyledInfoText>{" "}
           <StyledInfoText>
             Jag har ett stort intresse för programmering och älskar att jobba på

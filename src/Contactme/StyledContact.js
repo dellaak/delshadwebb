@@ -11,7 +11,7 @@ export const StyledWrapDiv = styled.div`
   }
 `;
 export const StyledForm = styled(Form)`
-  width: 90%;
+  width: 70%;
   max-width: 100%;
 `;
 
@@ -114,7 +114,7 @@ export const StyledInput = styled(Input)`
   border-bottom: solid #fff 2px;
   padding: 3px 10px;
   height: 50px;
-  width: 50%;
+  width: 90%;
   max-width: 100%;
   margin-bottom: 20px;
   ::placeholder {
@@ -134,7 +134,7 @@ export const StyledInputEmail = styled(Input)`
   border-bottom: solid #fff 2px;
   padding: 3px 10px;
   height: 50px;
-  width: 50%;
+  width: 90%;
   max-width: 100%;
   margin-bottom: 20px;
   ::placeholder {
@@ -179,4 +179,7 @@ export const StyledButton = styled(Button)`
   font-size: 26px !important;
   border: none !important;
   cursor: pointer;
+  align-items: center !important;
+  display: flex !important;
+  justify-content: center !important;
 `;

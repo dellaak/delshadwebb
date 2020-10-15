@@ -10,7 +10,7 @@ import {
 import { NavHashLink as NavLink } from "react-router-hash-link";
 
 export const StyledNavbar = styled(Navbar)`
-  height: 65px;
+  height: auto;
   display: flex;
   position: fixed !important;
   width: 100vw;
