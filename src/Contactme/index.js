@@ -52,10 +52,12 @@ function ContactMe(props) {
   }, [email, name, text]);
 
   const submitEmail = (e) => {
+    let obj = emailObj;
+    obj = JSON.stringify(emailObj);
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contactme", emailObj }),
+      body: encode({ "form-name": "contactme", obj }),
     })
       .then(() => {
         setSend(true);
