@@ -100,6 +100,7 @@ function ContactMe(props) {
   };
   return (
     <StyledDiv id="contactme">
+      <input type="hidden" name="contactme" value="contactme" />
       <StyledTopTitle>
         <StyledH2>Sugen på en egen hemsida? Kontakta mig </StyledH2>
       </StyledTopTitle>
@@ -112,6 +113,8 @@ function ContactMe(props) {
         ) : (
           <StyledEmailDiv>
             <StyledForm
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
               onSubmit={(e) => {
                 submitEmail(e);
               }}
