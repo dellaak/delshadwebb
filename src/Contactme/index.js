@@ -47,7 +47,7 @@ function ContactMe(props) {
     setEmailObj({
       email,
       name,
-      text,
+      message: text,
     });
   }, [email, name, text]);
 
