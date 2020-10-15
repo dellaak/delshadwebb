@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FormGroup } from "reactstrap";
 import {
   StyledWrapDiv,
@@ -23,6 +23,8 @@ import {
 import envelope from "../images/envelope.svg";
 import user from "../images/user.svg";
 import smslogo from "../images/logo-sms.png";
+import NetlifyForm from "react-ssg-netlify-forms";
+import "./style.scss";
 
 function ContactMe(props) {
   const [name, setName] = useState("");
@@ -32,35 +34,18 @@ function ContactMe(props) {
   const [emailVerify, setEmailVerify] = useState(false);
   const [nameVerify, setNameVerify] = useState(false);
   const [textVerify, setTextVerify] = useState(false);
+  const [emailObj, setEmailObj] = useState({});
 
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
-  };
+  useEffect(() => {
+    setEmailObj({
+      email,
+      name,
+      text,
+    });
+  }, [email, name, text]);
 
   const submitEmail = async (e) => {
-    let obj = {
-      name: name,
-      email: email,
-      text: text,
-    };
-    obj = JSON.stringify(obj);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", obj }),
-    })
-      .then((res) => {
-        console.log(res);
-        setSend(true);
-      })
-      .catch((error) => alert(error));
-
-    e.preventDefault();
-
+    setSend(true);
     window.history.pushState("", "Meddelandet Skickat", "/");
   };
 
@@ -107,10 +92,11 @@ function ContactMe(props) {
           </StyledSentDiv>
         ) : (
           <StyledEmailDiv>
-            <StyledForm
-              onSubmit={(e) => {
-                submitEmail(e);
-              }}
+            <NetlifyForm
+              className="netlify"
+              formName="contactme"
+              formValues={emailObj}
+              postSubmit={submitEmail}
             >
               <StyledFormGroup>
                 <StyledLabel for="name">
@@ -118,7 +104,7 @@ function ContactMe(props) {
                 </StyledLabel>
                 <StyledInput
                   type="text"
-                  id="name"
+                  name="name"
                   placeholder="Ditt namn (Krävs)"
                   value={name}
                   required
@@ -133,7 +119,7 @@ function ContactMe(props) {
                 </StyledLabel>
                 <StyledInputEmail
                   type="text"
-                  id="email"
+                  name="email"
                   placeholder="Din emailadress (Krävs)"
                   value={email}
                   required
@@ -147,8 +133,7 @@ function ContactMe(props) {
                 <StyledLabel for="textarea">Ditt meddelande:</StyledLabel>
                 <StyledMsgBox
                   type="textarea"
-                  name="textarea"
-                  id="textarea"
+                  name="message"
                   value={text}
                   placeholder="Här skriver du ditt meddelande. Du kanske bara har en fråga eller kommentar. Hör av dig! Minst 3 tecken....."
                   onChange={(e) => setText(e.target.value) + textFunc(e)}
@@ -166,7 +151,7 @@ function ContactMe(props) {
               >
                 Skicka meddelande
               </StyledButton>
-            </StyledForm>
+            </NetlifyForm>
           </StyledEmailDiv>
         )}
         <StyledInfoDiv>

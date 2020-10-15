@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Input, Label, FormGroup, Button, Form } from 'reactstrap';
+import styled from "styled-components";
+import { Input, Label, FormGroup, Button, Form } from "reactstrap";
 
 export const StyledWrapDiv = styled.div`
   background: #fff;
@@ -9,10 +9,6 @@ export const StyledWrapDiv = styled.div`
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
-`;
-export const StyledForm = styled(Form)`
-  width: 90%;
-  max-width: 100%;
 `;
 
 export const StyledDiv = styled.div`
@@ -80,7 +76,7 @@ export const StyledInfoDiv = styled.div`
 export const StyledInfoText = styled.p`
   color: #fff;
   font-size: 22px;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   img {
     width: 100px;
   }
@@ -103,8 +99,8 @@ export const StyledFormGroup = styled(FormGroup)`
 `;
 
 export const StyledInput = styled(Input)`
-  background-color: ${props =>
-    props.colorprop ? '#d8fced' : '#eee'} !important;
+  background-color: ${(props) =>
+    props.colorprop ? "#d8fced" : "#eee"} !important;
   color: #000;
   outline: none;
   outline-style: none;
@@ -123,8 +119,8 @@ export const StyledInput = styled(Input)`
 `;
 
 export const StyledInputEmail = styled(Input)`
-  background-color: ${props =>
-    props.colorprop ? '#d8fced' : '#eee'} !important;
+  background-color: ${(props) =>
+    props.colorprop ? "#d8fced" : "#eee"} !important;
   color: #000;
   outline: none;
   outline-style: none;
@@ -143,8 +139,8 @@ export const StyledInputEmail = styled(Input)`
 `;
 
 export const StyledMsgBox = styled(Input)`
-  background-color: ${props =>
-    props.colorprop ? '#d8fced' : '#eee'} !important;
+  background-color: ${(props) =>
+    props.colorprop ? "#d8fced" : "#eee"} !important;
   border: 2px solid black;
   background: #eee;
   display: flex;
@@ -170,7 +166,7 @@ export const StyledaTag = styled.a`
 
 export const StyledButton = styled(Button)`
   outline: none;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   background-color: #fed100 !important;
   color: #000 !important;
   height: 60px;
