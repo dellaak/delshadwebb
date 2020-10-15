@@ -23,80 +23,83 @@ import {
 import envelope from "../images/envelope.svg";
 import user from "../images/user.svg";
 import smslogo from "../images/logo-sms.png";
+import { useFormik } from "formik";
 import "./style.scss";
 
 function ContactMe(props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [text, setText] = useState("");
-  const [send, setSend] = useState(false);
   const [emailVerify, setEmailVerify] = useState(false);
   const [nameVerify, setNameVerify] = useState(false);
   const [textVerify, setTextVerify] = useState(false);
-  const [emailObj, setEmailObj] = useState({});
+  const [send, setSend] = useState(false);
 
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
+  const initialValues = {
+    "form-name": "contactme",
+    name: "",
+    email: "",
+    message: "",
   };
 
-  useEffect(() => {
-    setEmailObj({
-      email,
-      name,
-      message: text,
-    });
-  }, [email, name, text]);
+  const { values, setFieldValue, submitForm } = useFormik({
+    initialValues,
+    onSubmit: (values) => handleSubmit(values).then(() => setSend(true)),
+  });
 
-  const submitEmail = (e) => {
-    let obj = emailObj;
-    obj = JSON.stringify(emailObj);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contactme", obj }),
-    })
-      .then(() => {
-        setSend(true);
-        window.history.pushState("", "Meddelandet Skickat", "/");
-      })
-      .catch((error) => alert(error));
+  const handleSubmit = (val) => {
+    const urlEncodedData = Object.entries(values)
+      .map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
+      .join("&");
+    return Promise.all([
+      new Promise((res) => setTimeout(res, 1000)),
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: urlEncodedData,
+      }),
+    ]);
+  };
 
-    e.preventDefault();
+  const handleChange = (name) => (e) => {
+    if (name === "email") {
+      setFieldValue(name, emailfunc(e.target.value), false);
+    } else if (name === "name") {
+      setFieldValue(name, nameFunc(e.target.value), false);
+    } else if (name === "message") {
+      setFieldValue(name, textFunc(e.target.value), false);
+    }
   };
 
   const emailfunc = (e) => {
     let emailreg = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
-    let val = e.target.value.toLowerCase();
+    let val = e.toLowerCase();
 
     if (emailreg.test(val)) {
       setEmailVerify(true);
     } else {
       setEmailVerify(false);
     }
+    return val;
   };
 
-  const namefunc = (e) => {
-    let val = e.target.value;
+  const nameFunc = (e) => {
+    let val = e;
     let letters = /^[A-Za-z+\s]+$/;
     if (val.length > 1 && letters.test(val)) {
       setNameVerify(true);
     } else {
       setNameVerify(false);
     }
+    return val;
   };
 
   const textFunc = (e) => {
-    let val = e.target.value;
+    let val = e;
 
     if (val.length > 2) {
       setTextVerify(true);
     } else {
       setTextVerify(false);
     }
+    return val;
   };
   return (
     <StyledDiv id="contactme">
@@ -112,13 +115,7 @@ function ContactMe(props) {
           </StyledSentDiv>
         ) : (
           <StyledEmailDiv>
-            <StyledForm
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={(e) => {
-                submitEmail(e);
-              }}
-            >
+            <StyledForm data-netlify="true" data-netlify-honeypot="bot-field">
               <StyledFormGroup>
                 <StyledLabel for="name">
                   <StyledIcon src={user} alt="user-icon" />
@@ -127,9 +124,9 @@ function ContactMe(props) {
                   type="text"
                   name="name"
                   placeholder="Ditt namn (Krävs)"
-                  value={name}
+                  value={values.name}
                   required
-                  onChange={(e) => setName(e.target.value) + namefunc(e)}
+                  onChange={handleChange("name")}
                   colorprop={nameVerify ? 1 : 0}
                   autoComplete="off"
                 />
@@ -142,9 +139,9 @@ function ContactMe(props) {
                   type="text"
                   name="email"
                   placeholder="Din emailadress (Krävs)"
-                  value={email}
+                  value={values.email}
                   required
-                  onChange={(e) => setEmail(e.target.value) + emailfunc(e)}
+                  onChange={handleChange("email")}
                   colorprop={emailVerify ? 1 : 0}
                   autoComplete="off"
                 />
@@ -155,15 +152,15 @@ function ContactMe(props) {
                 <StyledMsgBox
                   type="textarea"
                   name="message"
-                  value={text}
+                  value={values.message}
                   placeholder="Här skriver du ditt meddelande. Du kanske bara har en fråga eller kommentar. Hör av dig! Minst 3 tecken....."
-                  onChange={(e) => setText(e.target.value) + textFunc(e)}
+                  onChange={handleChange("message")}
                   colorprop={textVerify ? 1 : 0}
                   autoComplete="off"
                 />
               </FormGroup>
               <StyledButton
-                onClick={submitEmail}
+                onClick={submitForm}
                 disabled={
                   emailVerify && nameVerify && textVerify === true
                     ? false
