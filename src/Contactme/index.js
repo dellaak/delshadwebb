@@ -23,7 +23,6 @@ import {
 import envelope from "../images/envelope.svg";
 import user from "../images/user.svg";
 import smslogo from "../images/logo-sms.png";
-import NetlifyForm from "react-ssg-netlify-forms";
 import "./style.scss";
 
 function ContactMe(props) {
@@ -36,6 +35,14 @@ function ContactMe(props) {
   const [textVerify, setTextVerify] = useState(false);
   const [emailObj, setEmailObj] = useState({});
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  };
+
   useEffect(() => {
     setEmailObj({
       email,
@@ -44,9 +51,19 @@ function ContactMe(props) {
     });
   }, [email, name, text]);
 
-  const submitEmail = async (e) => {
-    setSend(true);
-    window.history.pushState("", "Meddelandet Skickat", "/");
+  const submitEmail = (e) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", emailObj }),
+    })
+      .then(() => {
+        setSend(true);
+        window.history.pushState("", "Meddelandet Skickat", "/");
+      })
+      .catch((error) => alert(error));
+
+    e.preventDefault();
   };
 
   const emailfunc = (e) => {
@@ -92,11 +109,10 @@ function ContactMe(props) {
           </StyledSentDiv>
         ) : (
           <StyledEmailDiv>
-            <NetlifyForm
-              className="netlify"
-              formName="contactme"
-              formValues={emailObj}
-              postSubmit={submitEmail}
+            <StyledForm
+              onSubmit={(e) => {
+                submitEmail(e);
+              }}
             >
               <StyledFormGroup>
                 <StyledLabel for="name">
@@ -151,7 +167,7 @@ function ContactMe(props) {
               >
                 Skicka meddelande
               </StyledButton>
-            </NetlifyForm>
+            </StyledForm>
           </StyledEmailDiv>
         )}
         <StyledInfoDiv>

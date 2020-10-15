@@ -10,6 +10,10 @@ export const StyledWrapDiv = styled.div`
     flex-direction: column;
   }
 `;
+export const StyledForm = styled(Form)`
+  width: 90%;
+  max-width: 100%;
+`;
 
 export const StyledDiv = styled.div`
   background: #01092c;
