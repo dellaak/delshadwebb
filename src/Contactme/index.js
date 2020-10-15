@@ -23,7 +23,6 @@ import {
 import envelope from "../images/envelope.svg";
 import user from "../images/user.svg";
 import smslogo from "../images/logo-sms.png";
-import axios from "axios";
 
 function ContactMe(props) {
   const [name, setName] = useState("");
@@ -48,13 +47,16 @@ function ContactMe(props) {
       email: email,
       text: text,
     };
-
+    obj = JSON.stringify(obj);
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", obj }),
     })
-      .then(() => alert(setSend(true)))
+      .then((res) => {
+        console.log(res);
+        setSend(true);
+      })
       .catch((error) => alert(error));
 
     e.preventDefault();
@@ -93,7 +95,7 @@ function ContactMe(props) {
     }
   };
   return (
-    <StyledDiv id="contact">
+    <StyledDiv id="contactme">
       <StyledTopTitle>
         <StyledH2>Sugen på en egen hemsida? Kontakta mig </StyledH2>
       </StyledTopTitle>

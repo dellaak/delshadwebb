@@ -78,7 +78,7 @@ function NavbarComp() {
           </StyledNavItem>
 
           <StyledNavItem>
-            <StyledNavLink smooth to="/#contact" activeClassName="selected">
+            <StyledNavLink smooth to="/#contactme" activeClassName="selected">
               Kontakt
             </StyledNavLink>
           </StyledNavItem>
