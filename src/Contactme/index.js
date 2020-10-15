@@ -55,7 +55,7 @@ function ContactMe(props) {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", emailObj }),
+      body: encode({ "form-name": "contactme", emailObj }),
     })
       .then(() => {
         setSend(true);
