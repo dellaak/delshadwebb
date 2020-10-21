@@ -83,9 +83,10 @@ function ContactMe(props) {
   };
 
   const nameFunc = (e) => {
+    e.replace(/\s/g, "");
     let val = e;
-    let letters = /^[A-Za-z+\s]+$/;
-    if (val.length > 1 && letters.test(val)) {
+    let letters = /^[A-Za-z]/;
+    if (e.length > 1 && letters.test(val)) {
       setNameVerify(true);
     } else {
       setNameVerify(false);
@@ -94,9 +95,10 @@ function ContactMe(props) {
   };
 
   const textFunc = (e) => {
+    e.replace(/\s/g, "");
     let val = e;
-
-    if (val.length > 2) {
+    let letters = /^[A-Za-z]/;
+    if (e.length > 2 && letters.test(val)) {
       setTextVerify(true);
     } else {
       setTextVerify(false);
