@@ -27,8 +27,8 @@ function Skills() {
           <StyledImgHolder />
           <StyledInfoText>
             Hej! Mitt namn är Delshad Kogi och jag är just nu anställd på{" "}
-            <a href="https://www.geshdo.com">GESHDO</a>
-            som fullstack utvecklare.
+            <a href="https://www.geshdo.com">GESHDO</a> som fullstack
+            utvecklare.
           </StyledInfoText>{" "}
           <StyledInfoText>
             Jag har ett stort intresse för programmering och älskar att jobba på
