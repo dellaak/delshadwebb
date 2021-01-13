@@ -60,7 +60,7 @@ function NavbarComp() {
   return (
     <StyledNavbar colorprop={navBackground ? 1 : 0} light expand="md">
       <StyledNavBrand textcolorprop={navBackground ? 1 : 0} onClick={scrollTop}>
-        #OpenForWork
+        #DELSHAD
       </StyledNavBrand>
       <Stylednv onClick={toggle} />
       <StyledCollapse isOpen={isOpen} navbar>

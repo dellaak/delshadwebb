@@ -26,8 +26,8 @@ function Skills() {
         <StyledInfoDiv>
           <StyledImgHolder />
           <StyledInfoText>
-            Hej! Mitt namn är Delshad Kogi och jag söker just nu ett nytt jobb
-            från och med 1 november.
+            Hej! Mitt namn är Delshad Kogi och jag är just nu anställd på GESHDO
+            som fullstack utvecklare.
           </StyledInfoText>{" "}
           <StyledInfoText>
             Jag har ett stort intresse för programmering och älskar att jobba på
@@ -44,7 +44,7 @@ function Skills() {
             </StyledBoxTitle>
             <StyledSkillText>
               React.js • HTML5 • Styled Components • CSS • SCSS • jQuery •
-              Bootstrap • Material UI • Redux • Angular 2-7 • Typescript{" "}
+              Bootstrap • Material UI • Redux • Angular 2-7 • Typescript • Vue
             </StyledSkillText>
           </StyledFrontEndDiv>
           <StyledBackEndDiv>
